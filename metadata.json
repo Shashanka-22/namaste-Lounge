@@ -1,0 +1,6 @@
+{
+  "name": "Namaste Lounge — Palolem, Goa",
+  "description": "The Art of Unwinding. Where Every Evening Becomes a Story. Luxury cocktail lounge, authentic Indian and Goan dining in Palolem, Goa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
