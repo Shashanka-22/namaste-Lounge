@@ -50,31 +50,31 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
   }, [activeCategory, searchQuery]);
 
   return (
-    <section id="menu" className="py-24 md:py-32 bg-[#19241F] text-[#FAF7F0] relative border-t border-[#C6A56A]/15">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+    <section id="menu" className="py-16 sm:py-24 md:py-32 bg-[#19241F] text-[#FAF7F0] relative border-t border-[#C6A56A]/15">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#C6A56A] font-semibold mb-3">
             <Utensils className="w-3.5 h-3.5" />
             <span>Digital Culinary Journal</span>
           </div>
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#FAF7F0] font-normal leading-[1.1]">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#FAF7F0] font-normal leading-[1.1]">
             The Complete Menu
           </h2>
-          <p className="mt-4 text-base text-[#B9B5A9] font-light leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-[#B9B5A9] font-light leading-relaxed">
             Authentic coastal Goan recipes, slow-roasted dry masalas, classic European continental steaks, and handcrafted cocktails.
           </p>
         </div>
 
-        {/* Category Tabs: Exact 7 Categories Requested */}
-        <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 max-w-4xl mx-auto rounded-sm bg-[#101A17] border border-[#C6A56A]/20 mb-8">
+        {/* Category Tabs: Horizontally scrollable on mobile */}
+        <div className="flex overflow-x-auto no-scrollbar sm:flex-wrap items-center sm:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 max-w-4xl mx-auto rounded-sm bg-[#101A17] border border-[#C6A56A]/20 mb-6 sm:mb-8">
           {MENU_CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`py-2 px-3 sm:px-4 rounded-sm text-xs uppercase tracking-[0.14em] font-semibold transition-all duration-200 cursor-pointer text-center whitespace-nowrap ${
+                className={`shrink-0 py-2 sm:py-2.5 px-3.5 sm:px-4 rounded-sm text-xs uppercase tracking-[0.12em] font-semibold transition-all duration-200 cursor-pointer text-center whitespace-nowrap min-h-[42px] flex items-center justify-center ${
                   isActive
                     ? 'bg-[#C6A56A] text-[#101A17] shadow-md font-bold'
                     : 'text-[#FAF7F0]/70 hover:text-[#FAF7F0] hover:bg-[#19241F]'
@@ -87,10 +87,10 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
         </div>
 
         {/* Search & Subtitle Strip */}
-        <div className="max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-[#B9B5A9] tracking-wide">
+        <div className="max-w-4xl mx-auto mb-6 sm:mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+          <div className="text-xs text-[#B9B5A9] tracking-wide flex items-center justify-between sm:justify-start">
             <span>{activeCategoryMeta.subtitle}</span>
-            <span className="mx-2">·</span>
+            <span className="mx-2 hidden sm:inline">·</span>
             <span className="text-[#C6A56A] font-mono tabular-nums">{filteredItems.length} items</span>
           </div>
 
@@ -101,14 +101,14 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search dishes, fish, ingredients..."
-              className="w-full pl-10 pr-4 py-2.5 bg-[#101A17] border border-[#C6A56A]/25 rounded-sm text-xs text-[#FAF7F0] placeholder:text-[#FAF7F0]/40 focus:outline-none focus:border-[#C6A56A] transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-[#101A17] border border-[#C6A56A]/25 rounded-sm text-xs sm:text-sm text-[#FAF7F0] placeholder:text-[#FAF7F0]/40 focus:outline-none focus:border-[#C6A56A] transition-colors"
             />
           </div>
         </div>
 
         {/* Platter Notice Card (when viewing seafood / fish fry / prawns) */}
         {(activeCategory === 'seafood' || activeCategory === 'fish-fry' || activeCategory === 'prawns') && (
-          <div className="max-w-4xl mx-auto mb-8 p-4 rounded-sm border border-[#C6A56A]/30 bg-[#101A17]/80 backdrop-blur-sm flex items-center justify-between gap-4">
+          <div className="max-w-4xl mx-auto mb-6 sm:mb-8 p-3.5 sm:p-4 rounded-sm border border-[#C6A56A]/30 bg-[#101A17]/80 backdrop-blur-sm flex items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3">
               <Fish className="w-5 h-5 text-[#C6A56A] shrink-0" />
               <p className="text-xs text-[#FAF7F0]/85">
@@ -119,9 +119,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
         )}
 
         {/* Menu Items List */}
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
           {filteredItems.length === 0 ? (
-            <div className="text-center py-16 bg-[#101A17] rounded-sm border border-[#C6A56A]/20">
+            <div className="text-center py-16 bg-[#101A17] rounded-sm border border-[#C6A56A]/20 px-4">
               <p className="text-sm text-[#B9B5A9]">No dishes match your search.</p>
               <button
                 onClick={() => {
@@ -141,7 +141,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
               return (
                 <div
                   key={item.id}
-                  className={`p-5 rounded-sm transition-all duration-300 border ${
+                  className={`p-4 sm:p-5 rounded-sm transition-all duration-300 border ${
                     item.isPlatter
                       ? 'border-[#C6A56A]/60 bg-gradient-to-r from-[#101A17] via-[#1D251F] to-[#101A17] shadow-lg'
                       : 'border-[#C6A56A]/15 bg-[#101A17]/70 hover:border-[#C6A56A]/40'
@@ -149,7 +149,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-6">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2.5 flex-wrap">
+                      <div className="flex items-center gap-2 flex-wrap">
                         {/* Dietary Marker */}
                         {item.dietary === 'veg' && (
                           <span className="w-3.5 h-3.5 border border-emerald-500 flex items-center justify-center p-0.5" title="Vegetarian">
@@ -167,7 +167,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
                           </span>
                         )}
 
-                        <h3 className="font-serif text-xl sm:text-2xl text-[#FAF7F0] font-medium tracking-wide">
+                        <h3 className="font-serif text-lg sm:text-2xl text-[#FAF7F0] font-medium tracking-wide">
                           {item.name}
                         </h3>
 
@@ -184,24 +184,24 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
                       </div>
 
                       {item.description && (
-                        <p className="mt-2 text-xs sm:text-sm text-[#B9B5A9] font-light leading-relaxed">
+                        <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[#B9B5A9] font-light leading-relaxed">
                           {item.description}
                         </p>
                       )}
 
                       {/* Ingredients Drawer for Cocktails */}
                       {isCocktail && item.ingredients && (
-                        <div className="mt-3">
+                        <div className="mt-2.5 sm:mt-3">
                           <button
                             onClick={() => setExpandedCocktail(isExpanded ? null : item.id)}
-                            className="text-xs text-[#C6A56A] hover:text-[#DFCA9B] flex items-center gap-1 cursor-pointer font-medium"
+                            className="text-xs text-[#C6A56A] hover:text-[#DFCA9B] flex items-center gap-1.5 cursor-pointer font-medium min-h-[44px]"
                           >
                             <span>{isExpanded ? 'Hide Botanical Recipe' : 'View Botanical Ingredients'}</span>
                             {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                           </button>
 
                           {isExpanded && (
-                            <div className="mt-3 pt-3 border-t border-[#C6A56A]/20 flex flex-wrap gap-1.5 animate-fadeIn">
+                            <div className="mt-2 pt-2 border-t border-[#C6A56A]/20 flex flex-wrap gap-1.5 animate-fadeIn">
                               {item.ingredients.map((ing, idx) => (
                                 <span
                                   key={idx}
@@ -217,13 +217,13 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectForReservation
                     </div>
 
                     {/* Price & Action */}
-                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2.5 mt-2 sm:mt-0 shrink-0">
-                      <span className="font-serif text-2xl text-[#C6A56A] font-semibold tabular-nums">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2.5 pt-2 sm:pt-0 border-t border-[#C6A56A]/10 sm:border-0 shrink-0">
+                      <span className="font-serif text-xl sm:text-2xl text-[#C6A56A] font-semibold tabular-nums">
                         ₹{item.price.toLocaleString('en-IN')}
                       </span>
                       <button
                         onClick={() => onSelectForReservation(item.name)}
-                        className="text-[11px] uppercase tracking-wider text-[#FAF7F0]/70 hover:text-[#C6A56A] flex items-center gap-1.5 transition-colors cursor-pointer py-1"
+                        className="text-[11px] uppercase tracking-wider text-[#FAF7F0]/70 hover:text-[#C6A56A] flex items-center gap-1.5 transition-colors cursor-pointer py-1.5 px-2.5 sm:p-0 rounded-sm bg-[#19241F]/60 sm:bg-transparent min-h-[36px]"
                         title={`Reserve table with ${item.name}`}
                       >
                         <CalendarCheck className="w-3.5 h-3.5 text-[#C6A56A]" />

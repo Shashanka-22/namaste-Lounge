@@ -104,7 +104,7 @@ export const CocktailCollection: React.FC<CocktailCollectionProps> = ({ onReserv
   ];
 
   return (
-    <section id="cocktails" className="py-24 md:py-32 bg-[#101A17] text-[#FAF7F0] relative overflow-hidden border-t border-[#C6A56A]/15">
+    <section id="cocktails" className="py-16 sm:py-24 md:py-32 bg-[#101A17] text-[#FAF7F0] relative overflow-hidden border-t border-[#C6A56A]/15">
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0">
         <img
@@ -117,44 +117,44 @@ export const CocktailCollection: React.FC<CocktailCollectionProps> = ({ onReserv
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,165,106,0.12)_0%,transparent_70%)]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#C6A56A] font-semibold mb-3">
             <Wine className="w-3.5 h-3.5" />
             <span>The Lounge Collection</span>
           </div>
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#FAF7F0] font-normal leading-[1.1]">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#FAF7F0] font-normal leading-[1.1]">
             Artisanal Cocktails
           </h2>
-          <p className="mt-4 text-base text-[#B9B5A9] font-light leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-[#B9B5A9] font-light leading-relaxed">
             Every cocktail is handcrafted by our mixologists using fresh fruit reductions, premium spirits, and fragrant botanicals.
           </p>
 
-          <div className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-sm bg-[#19241F]/80 border border-[#C6A56A]/30 text-xs text-[#C6A56A] font-mono">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 mt-5 sm:mt-6 px-3.5 sm:px-4 py-2 rounded-sm bg-[#19241F]/80 border border-[#C6A56A]/30 text-xs text-[#C6A56A] font-mono">
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
             <span>All Signature Cocktails Uniformly Priced at ₹380</span>
           </div>
         </div>
 
         {/* 2-Column Responsive Layout of Cocktails */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 max-w-5xl mx-auto">
           {cocktails.map((drink) => {
             const isExpanded = expandedId === drink.id;
 
             return (
               <div
                 key={drink.id}
-                className={`p-6 rounded-sm transition-all duration-300 border ${
+                className={`p-5 sm:p-6 rounded-sm transition-all duration-300 border ${
                   isExpanded
                     ? 'bg-[#19241F] border-[#C6A56A]/60 shadow-xl'
                     : 'bg-[#19241F]/60 border-[#C6A56A]/20 hover:border-[#C6A56A]/40'
                 }`}
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start justify-between gap-3 sm:gap-4">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="font-serif text-2xl text-[#FAF7F0] font-medium">
+                      <h3 className="font-serif text-xl sm:text-2xl text-[#FAF7F0] font-medium">
                         {drink.name}
                       </h3>
                       {drink.signature && (
@@ -168,12 +168,12 @@ export const CocktailCollection: React.FC<CocktailCollectionProps> = ({ onReserv
                     </p>
                   </div>
 
-                  <span className="font-serif text-2xl text-[#C6A56A] font-semibold tabular-nums shrink-0">
+                  <span className="font-serif text-xl sm:text-2xl text-[#C6A56A] font-semibold tabular-nums shrink-0">
                     ₹{drink.price}
                   </span>
                 </div>
 
-                <p className="mt-3 text-xs text-[#B9B5A9] font-light leading-relaxed">
+                <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[#B9B5A9] font-light leading-relaxed">
                   {drink.description}
                 </p>
 
@@ -181,14 +181,14 @@ export const CocktailCollection: React.FC<CocktailCollectionProps> = ({ onReserv
                 <div className="mt-4 pt-3 border-t border-[#C6A56A]/15">
                   <button
                     onClick={() => setExpandedId(isExpanded ? null : drink.id)}
-                    className="text-xs text-[#C6A56A] hover:text-[#DFCA9B] flex items-center gap-1 font-medium cursor-pointer"
+                    className="text-xs text-[#C6A56A] hover:text-[#DFCA9B] flex items-center gap-1.5 font-medium cursor-pointer min-h-[44px]"
                   >
                     <span>{isExpanded ? 'Hide Botanical Recipe' : 'View Botanical Ingredients'}</span>
                     {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                   </button>
 
                   {isExpanded && (
-                    <div className="mt-3 flex flex-wrap gap-1.5 animate-fadeIn">
+                    <div className="mt-2 flex flex-wrap gap-1.5 animate-fadeIn">
                       {drink.ingredients.map((ing, idx) => (
                         <span
                           key={idx}
@@ -206,10 +206,10 @@ export const CocktailCollection: React.FC<CocktailCollectionProps> = ({ onReserv
         </div>
 
         {/* Reserve Night Action */}
-        <div className="mt-14 text-center">
+        <div className="mt-12 sm:mt-14 text-center">
           <button
             onClick={onReserveClick}
-            className="px-8 py-4 bg-[#C6A56A] hover:bg-[#DFCA9B] text-[#101A17] text-xs uppercase tracking-[0.2em] font-bold rounded-sm transition-all duration-200 cursor-pointer shadow-xl hover:shadow-[#C6A56A]/25"
+            className="w-full sm:w-auto px-8 py-4 min-h-[48px] bg-[#C6A56A] hover:bg-[#DFCA9B] text-[#101A17] text-xs uppercase tracking-[0.2em] font-bold rounded-sm transition-all duration-200 cursor-pointer shadow-xl hover:shadow-[#C6A56A]/25 text-center flex items-center justify-center mx-auto"
           >
             Reserve An Evening with Cocktails
           </button>

@@ -22,38 +22,70 @@
   color-scheme: dark;
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: #101A17;
   color: #FAF7F0;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-serif);
 }
 
+/* Prevent double-tap zoom delay on mobile buttons & links */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Ensure inputs on mobile are at least 16px to prevent automatic iOS Safari zoom */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
 /* Custom subtle scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #101A17;
 }
 ::-webkit-scrollbar-thumb {
   background: #19241F;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C6A56A;
 }
 
+/* Hide scrollbar utility for mobile horizontal tab navigation */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Glass nav & cards */
 .glass-nav-luxury {
-  background: rgba(16, 26, 23, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(198, 165, 106, 0.15);
+  background: rgba(16, 26, 23, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(198, 165, 106, 0.16);
 }
 
 .luxury-card {
@@ -76,4 +108,14 @@ h1, h2, h3, h4, .font-serif {
   background: linear-gradient(135deg, #FAF7F0 10%, #C6A56A 65%, #DFCA9B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
